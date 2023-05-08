@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recommended Songs</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <style>
+            .card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+                border-radius: 15px;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                background-color: #fff;
+                box-shadow: 10px 10px rgba(173, 216, 230, 0.5);
+                transition: all 0.2s ease-in-out;
+            }
+            .card:hover {
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+                transform: translateY(-5px);
+            }
+            .card img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 10px;
+                border-radius: 15px;
+            }
+            .card .details {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .card .details h2 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+            }
+            .card .details p {
+                margin: 0;
+                font-size: 14px;
+                color: #666;
+                text-align: center;
+            }
+            .card .details a {
+                font-size: 14px;
+                color: #1db954;
+                text-decoration: none;
+                transition: all 0.2s ease-in-out;
+            }
+            .card .details a:hover {
+                color: #0d8050;
+            }
+
+            /* Grid container styles */
+            .card-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 20px;
+                margin: 20px;
+            }
+
+            @media (max-width: 991px) {
+                .card-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 767px) {
+                .card-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center mb-4">My Playlist</h1>
+            <div class="card-container">
+                {% for track in tracks %}
+                <div class="card">
+                    <img src="{{ track.track.album.images.0.url }}" />
+                    <div class="details">
+                        <h2>{{ track.track.name }}</h2>
+                        <p>
+                            {{ track.track.artists.0.name }} - {{
+                            track.track.album.name }}
+                        </p>
+                        <a href="{{ track.track.uri }}" target="_blank"
+                            >Listen on Spotify</a
+                        >
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <!--====== Title ======-->
+        {% comment %}
+        <title>Music Recommendation System</title>
+
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {% endcomment %}
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+
+        <style>
+            .button {
+                appearance: none;
+                background-color: #2ea44f;
+                border: 1px solid rgba(27, 31, 35, 0.15);
+                border-radius: 6px;
+                box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-family: -apple-system, system-ui, "Segoe UI", Helvetica,
+                    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 6px 16px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                vertical-align: middle;
+                white-space: nowrap;
+                margin-right: 10px;
+            }
+
+            .button:focus:not(:focus-visible):not(.focus-visible) {
+                box-shadow: none;
+                outline: none;
+            }
+
+            .button:hover {
+                background-color: #2c974b;
+            }
+
+            .button:focus {
+                box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+                outline: none;
+            }
+
+            .button:disabled {
+                background-color: #94d3a2;
+                border-color: rgba(27, 31, 35, 0.1);
+                color: rgba(255, 255, 255, 0.8);
+                cursor: default;
+            }
+
+            .button:active {
+                background-color: #298e46;
+                box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+            }
+            .card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                background-color: #fff;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.2s ease-in-out;
+            }
+            .card:hover {
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+                transform: translateY(-5px);
+            }
+            .card img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 10px;
+            }
+            .card .details {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .card .details h2 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+            }
+            .card .details p {
+                margin: 0;
+                font-size: 14px;
+                color: #666;
+                text-align: center;
+            }
+            .card .details a {
+                font-size: 14px;
+                color: #1db954;
+                text-decoration: none;
+                transition: all 0.2s ease-in-out;
+            }
+            .card .details a:hover {
+                color: #0d8050;
+            }
+
+            /* Grid container styles */
+            .card-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 20px;
+                margin: 20px;
+            }
+
+            @media (max-width: 991px) {
+                .card-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 767px) {
+                .card-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--[if IE]>
+            <p class="browserupgrade">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="https://browsehappy.com/">upgrade your browser</a> to
+                improve your experience and security.
+            </p>
+        <![endif]-->
+
+        <!--====== PRELOADER PART START ======-->
+
+        <div class="preloader">
+            <div class="loader">
+                <div class="ytp-spinner">
+                    <div class="ytp-spinner-container">
+                        <div class="ytp-spinner-rotator">
+                            <div class="ytp-spinner-left">
+                                <div class="ytp-spinner-circle"></div>
+                            </div>
+                            <div class="ytp-spinner-right">
+                                <div class="ytp-spinner-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--====== PRELOADER PART ENDS ======-->
+
+        <!--====== HEADER PART START ======-->
+        {% include "header.html" %}
+        <!--====== HEADER PART ENDS ======-->
+
+        <div
+            id="home"
+            class="header-hero bg_cover d-lg-flex align-items-center"
+        >
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+
+            <div class="container">
+                <div
+                    class="row align-items-center justify-content-center justify-content-lg-between"
+                >
+                    <div class="col-lg-6 col-md-10">
+                        <div class="header-hero-content">
+                            <h3
+                                class="header-title wow fadeInLeftBig"
+                                data-wow-duration="1.3s"
+                                data-wow-delay="0.2s"
+                            >
+                                <span
+                                    >Music Recommendation System using Spotify
+                                    API</span
+                                >
+                            </h3>
+                            <p
+                                class="text wow fadeInLeftBig"
+                                data-wow-duration="1.3s"
+                                data-wow-delay="0.6s"
+                            >
+                                Welcome Back!, Discover the perfect soundtrack
+                                for your emotions with our Emotion-based music
+                                recommendations powered by the Spotify API.
+                            </p>
+                            <ul class="d-flex">
+                                <li>
+                                    {% comment %}
+                                    <a
+                                        href="https://rebrand.ly/appland-ud"
+                                        rel="nofollow"
+                                        class="main-btn wow fadeInLeftBig"
+                                        data-wow-duration="1.3s"
+                                        data-wow-delay="0.8s"
+                                        >Purchase Now</a
+                                    >
+                                    {% endcomment %}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- header hero content -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-10">
+                        <!-- <div class="header-image"> -->
+                        <div id="container">
+                            <img src="{% url 'facecam_feed' %}" width="100%" />
+                        </div>
+                        {% comment %}
+                        <button
+                            class="pushable"
+                            value="stop"
+                            formaction="{% url 'stop_emotion_detection' %}"
+                        >
+                            <div class="front">
+                                <img
+                                    class="div1"
+                                    src="/static/images/videocam.png"
+                                    style="
+                                        width: 50px;
+                                        height: 50px;
+                                        float: left;
+                                    "
+                                />
+                                <div
+                                    class="div2 custom-control custom-switch custom-switch-xl"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id="customSwitch4"
+                                        checked
+                                    />
+                                </div>
+                            </div>
+                        </button>
+                        {% endcomment %}
+                        <button
+                            id="submit"
+                            data-url="{% url 'spotifyApi' %}"
+                            class="button"
+                            
+                        >
+                            Recommend Music
+                        </button>
+                        <script>
+                            document
+                                .getElementById("submit")
+                                .addEventListener("click", function () {
+                                    var url = this.getAttribute("data-url");
+                                    window.location.href = url;
+                                });
+                        </script>
+
+                        {% comment %}
+                        <button id="stop-button" class="button">Stop</button>
+                        <script>
+                            document
+                                .getElementById("stop-button")
+                                .addEventListener("click", function () {
+                                    fetch("/stop_streaming/")
+                                        .then(function (response) {
+                                            return response.json();
+                                        })
+                                        .then(function (data) {
+                                            console.log(data);
+                                        });
+                                });
+                        </script>
+                        {% endcomment %} {% comment %}
+                        <button
+                            id="retake"
+                            class="button"
+                            data-url="{% url 'facecam_feed' %}"
+                        >
+                            Retake
+                        </button>
+                        <script>
+                            document
+                                .getElementById("retake")
+                                .addEventListener("click", function () {
+                                    var url = this.getAttribute("data-url");
+                                    window.location.href = url;
+                                });
+                        </script>
+                        {% endcomment %}
+
+                        <div
+                            class="image-shape wow fadeInRightBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.8s"
+                        >
+                            <!-- <img src="assets/images/image-shape.svg" alt="shape" /> -->
+                        </div>
+                        <!-- </div> -->
+                        <!-- header image -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+            <div class="header-shape-1"></div>
+            <!-- header shape -->
+            <div class="header-shape-2">
+                <img src="/static/images/header-shape-2.svg" alt="shape" />
+            </div>
+            <!-- header shape -->
+        </div>
+
+        <!--====== SERVICES PART START ======-->
+
+        {% comment %}
+        <section id="why" class="services-area pt-110 pb-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-title text-center pb-25">
+                            <h3 class="title">Why You Should Choose AppLand</h3>
+                            <p class="text">
+                                Alii nusquam cu duo, vim eu consulatu
+                                percipitur, meis dolor comprehensam at vis. Vel
+                                ut percipitur dignissim signiferumque.
+                            </p>
+                        </div>
+                        <!-- section title -->
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div
+                            class="single-services services-color-1 text-center mt-30 wow fadeInUpBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.2s"
+                        >
+                            <div
+                                class="services-icon d-flex align-items-center justify-content-center"
+                            >
+                                <i class="lni lni-layers"></i>
+                            </div>
+                            <div class="services-content">
+                                <h4 class="services-title">
+                                    <a href="#">Clean Design</a>
+                                </h4>
+                                <p class="text">
+                                    Lorem ipsum dolor sitam etco snsetetur
+                                    sadipscing elitr sed diam nonumy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- single services -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div
+                            class="single-services services-color-2 text-center mt-30 wow fadeInUpBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.4s"
+                        >
+                            <div
+                                class="services-icon d-flex align-items-center justify-content-center"
+                            >
+                                <i class="lni lni-layout"></i>
+                            </div>
+                            <div class="services-content">
+                                <h4 class="services-title">
+                                    <a href="#">Easy to Use</a>
+                                </h4>
+                                <p class="text">
+                                    Lorem ipsum dolor sitam etco snsetetur
+                                    sadipscing elitr sed diam nonumy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- single services -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div
+                            class="single-services services-color-3 text-center mt-30 wow fadeInUpBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.6s"
+                        >
+                            <div
+                                class="services-icon d-flex align-items-center justify-content-center"
+                            >
+                                <i class="lni lni-bolt"></i>
+                            </div>
+                            <div class="services-content">
+                                <h4 class="services-title">
+                                    <a href="#">Fast Loading</a>
+                                </h4>
+                                <p class="text">
+                                    Lorem ipsum dolor sitam etco snsetetur
+                                    sadipscing elitr sed diam nonumy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- single services -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div
+                            class="single-services services-color-4 text-center mt-30 wow fadeInUpBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.8s"
+                        >
+                            <div
+                                class="services-icon d-flex align-items-center justify-content-center"
+                            >
+                                <i class="lni lni-protection"></i>
+                            </div>
+                            <div class="services-content">
+                                <h4 class="services-title">
+                                    <a href="#">All Elements</a>
+                                </h4>
+                                <p class="text">
+                                    Lorem ipsum dolor sitam etco snsetetur
+                                    sadipscing elitr sed diam nonumy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- single services -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </section>
+        {% endcomment %}
+
+        <!--====== SERVICES PART ENDS ======-->
+
+        <!--====== ABOUT PART START ======-->
+
+        {% comment %}
+        <section id="about" class="about-area pt-70 pb-120">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div
+                            class="about-image mt-50 wow fadeInLeftBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.5s"
+                        >
+                            <div class="about-shape"></div>
+                            <img
+                                class="app"
+                                src="/static/images/about-app.png"
+                                alt="app"
+                            />
+                        </div>
+                        <!-- about image -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div
+                            class="about-content mt-50 wow fadeInRightBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.5s"
+                        >
+                            <div class="section-title">
+                                <h3 class="title">
+                                    You're Using Free Lite Version
+                                </h3>
+                                <p class="text">
+                                    Please, purchase the full version of
+                                    template get all pages, features, elements,
+                                    documentation, commercial license and
+                                    permission to remove footer credit.
+                                </p>
+                            </div>
+                            <!-- section title -->
+                            <a
+                                href="https://rebrand.ly/appland-ud"
+                                rel="nofollow"
+                                class="main-btn"
+                                >Get Full Version</a
+                            >
+                        </div>
+                        <!-- about content -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </section>
+        {% endcomment %}
+
+        <!--====== ABOUT PART ENDS ======-->
+
+        <!--====== DOWNLOAD PART START ======-->
+
+        {% comment %}
+        <section id="download" class="download-area pt-70 pb-40">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6 col-md-9">
+                        <div
+                            class="download-image mt-50 wow fadeInRightBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.2s"
+                        >
+                            <img
+                                class="image"
+                                src="/static/images/download-app.png"
+                                alt="download"
+                            />
+
+                            <div class="download-shape-1"></div>
+                            <div class="download-shape-2">
+                                <img
+                                    class="svg"
+                                    src="/static/images/download-shape.svg"
+                                    alt="shape"
+                                />
+                            </div>
+                        </div>
+                        <!-- download image -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div
+                            class="download-content mt-45 wow fadeInLeftBig"
+                            data-wow-duration="1.3s"
+                            data-wow-delay="0.5s"
+                        >
+                            <h3 class="download-title">
+                                Download and Start Using!
+                            </h3>
+                            <p class="text">
+                                Alii nusquam cu duo, vim eu consulatu
+                                percipitur, meis doorcomprehen sam at vis. Vel
+                                ut dignissim signiferumq Alii nusquam cuduo, vim
+                                eusde consulatu percipitur, meis dolor
+                                comprehensam at vij. Alii nusquam cu duo, vim eu
+                                consulatu percipitur, meis doorcomprehen sam at
+                                vis. Vel ut dignissim signiferumq nusquam.
+                            </p>
+                            <ul>
+                                <li>
+                                    <a class="app-store" href="#"
+                                        ><img
+                                            src="/static/images/app-store.png"
+                                            alt="store"
+                                    /></a>
+                                </li>
+                                <li>
+                                    <a class="play-store" href="#"
+                                        ><img
+                                            src="/static/images/play-store.png"
+                                            alt="store"
+                                    /></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- download image -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </section>
+        {% endcomment %}
+
+        <!--====== DOWNLOAD PART ENDS ======-->
+
+        <!--====== PART START ======-->
+        {% include "footer.html" %}
+        <!--====== PART ENDS ======-->
+
+        <!--====== BACK TOP TOP PART START ======-->
+
+        <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
+
+        <!--====== BACK TOP TOP PART ENDS ======-->
+
+        <!--====== PART START ======-->
+
+        <!--
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-"></div> 
+            </div>
+        </div>
+    </section>
+-->
+
+        <!--====== PART ENDS ======-->
+
+        <!--====== Jquery js ======-->
+        <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="/static/js/vendor/modernizr-3.7.1.min.js"></script>
+
+        <!--====== Bootstrap js ======-->
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <!--====== WOW js ======-->
+        <script src="/static/js/wow.min.js"></script>
+
+        <!--====== Scrolling Nav js ======-->
+        <script src="/static/js/jquery.easing.min.js"></script>
+        <script src="/static/js/scrolling-nav.js"></script>
+
+        <!--====== Main js ======-->
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
