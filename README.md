@@ -48,9 +48,10 @@ This project showcases the powerful synergy between computer vision, deep learni
 ## System Architecture
 
 <div style="text-align: center;">
-<img width="506" alt="Screenshot 2024-08-04 at 7 19 55 AM" src="https://github.com/user-attachments/assets/dbe64dc9-837c-427e-b365-d47297a3835a">
+    <img width="506" alt="Screenshot 2024-08-04 at 7 19 55 AM" src="https://github.com/user-attachments/assets/dbe64dc9-837c-427e-b365-d47297a3835a">
     <p style="font-size: 14px; color: #555;">Figure: Architecture diagram</p>
 </div>
+
 
 The WMusic system architecture consists of several key components working in harmony:
 
@@ -75,7 +76,7 @@ Dataset characteristics:
 Dataset distribution:
 
 <div style="text-align: center;">
-  <img width="371" alt="Screenshot 2024-08-04 at 7 16 41 AM" src="https://github.com/user-attachments/assets/6b989546-481d-407e-939d-de77bca7f0f4">
+    <img width="371" alt="Screenshot 2024-08-04 at 7 16 41 AM" src="https://github.com/user-attachments/assets/6b989546-481d-407e-939d-de77bca7f0f4">
     <p style="font-size: 14px; color: #555;">Figure: FER2013 Dataset Distribution</p>
 </div>
 
@@ -86,9 +87,10 @@ The diverse nature of this dataset allows our model to recognize a wide range of
 Our emotion classification model utilizes a Convolutional Neural Network (CNN) architecture, designed to efficiently extract and learn hierarchical features from facial images.
 
 <div style="text-align: center;">
-<img width="546" alt="Screenshot 2024-08-04 at 7 19 18 AM" src="https://github.com/user-attachments/assets/6f9c88a1-b3c5-4ec1-b7a6-dccd71d248cd">
+    <img width="546" alt="Screenshot 2024-08-04 at 7 19 18 AM" src="https://github.com/user-attachments/assets/6f9c88a1-b3c5-4ec1-b7a6-dccd71d248cd">
     <p style="font-size: 14px; color: #555;">Figure: CNN architecture</p>
 </div>
+
 
 Key components of our CNN architecture:
 
@@ -230,7 +232,7 @@ We employed data augmentation techniques such as rotation, flipping, and zooming
 Training and validation performance:
 
 <div style="text-align: center;">
-  <img width="517" alt="Screenshot 2024-08-04 at 5 08 09 AM" src="https://github.com/user-attachments/assets/72a28af2-6a48-4ca4-9a1a-445a44c0aef8">
+    <img width="517" alt="Screenshot 2024-08-04 at 5 08 09 AM" src="https://github.com/user-attachments/assets/72a28af2-6a48-4ca4-9a1a-445a44c0aef8">
     <p style="font-size: 14px; color: #555;">Figure: Training and Validation Loss and Accuracy</p>
 </div>
 
@@ -272,9 +274,9 @@ WMusic features a modern, intuitive, and responsive web interface designed for s
 
 ### Home Page
 
-<div align="center">
+<div style="text-align: center;">
     <img width="519" alt="Screenshot 2024-08-04 at 7 07 16 AM" src="https://github.com/user-attachments/assets/02ecf8f5-34cf-47fe-b24b-2c320884a7d2">
-    <p><strong>WMusic Homepage</strong></p>
+    <p style="font-size: 14px; color: #555;">Figure: WMusic Homepage</p>
 </div>
 
 The home page of WMusic presents a clean and visually appealing layout:
@@ -299,9 +301,9 @@ The home page of WMusic presents a clean and visually appealing layout:
 
 ### Recommendation Page
 
-<div align="center">
-    ![photo_2024-08-04_02-01-11](https://github.com/user-attachments/assets/001a4ac3-4954-44d3-a569-339b4f33ae60)
-    <p><strong>WMusic Recommendation Page</strong></p>
+<div style="text-align: center;">
+    <img width="519" alt="photo_2024-08-04_02-01-11" src="https://github.com/user-attachments/assets/d457ca13-f691-4394-b3cd-2975325c21c2">
+    <p style="font-size: 14px; color: #555;">Figure: WMusic Recommendation Page</p>
 </div>
 
 Once the user's emotion is detected and they click "Recommend Music", they are presented with a personalized playlist:
