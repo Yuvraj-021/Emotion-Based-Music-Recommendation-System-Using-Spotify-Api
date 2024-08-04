@@ -9,17 +9,22 @@
 5. [Dataset](#dataset)
 6. [CNN Architecture](#cnn-architecture)
 7. [Implementation Details](#implementation-details)
+   - [Data Preprocessing and Transformation](#data-preprocessing-and-transformation)
+   - [CNN Model Implementation](#cnn-model-implementation)
 8. [Installation and Setup](#installation-and-setup)
 9. [Usage Guide](#usage-guide)
 10. [Model Training and Evaluation](#model-training-and-evaluation)
 11. [Spotify API Integration](#spotify-api-integration)
 12. [User Interface](#user-interface)
+   - [Home Page](#home-page)
+   - [Recommendation Page](#recommendation-page)
 13. [Results and Performance](#results-and-performance)
 14. [Challenges and Solutions](#challenges-and-solutions)
 15. [Future Scope](#future-scope)
 16. [Contributing](#contributing)
-17. [License](#license)
+17. [Project Structure](#project-structure)
 18. [Acknowledgements](#acknowledgements)
+
 
 ## Introduction
 
@@ -42,7 +47,10 @@ This project showcases the powerful synergy between computer vision, deep learni
 
 ## System Architecture
 
-![System Architecture](path/to/system_architecture_image.png)
+<div style="text-align: center;">
+<img width="506" alt="Screenshot 2024-08-04 at 7 19 55 AM" src="https://github.com/user-attachments/assets/dbe64dc9-837c-427e-b365-d47297a3835a">
+    <p style="font-size: 14px; color: #555;">Figure: Architecture diagram</p>
+</div>
 
 The WMusic system architecture consists of several key components working in harmony:
 
@@ -66,7 +74,10 @@ Dataset characteristics:
 
 Dataset distribution:
 
-![FER2013 Dataset Distribution](path/to/fer2013_distribution.png)
+<div style="text-align: center;">
+  <img width="371" alt="Screenshot 2024-08-04 at 7 16 41 AM" src="https://github.com/user-attachments/assets/6b989546-481d-407e-939d-de77bca7f0f4">
+    <p style="font-size: 14px; color: #555;">Figure: FER2013 Dataset Distribution</p>
+</div>
 
 The diverse nature of this dataset allows our model to recognize a wide range of facial expressions across different individuals.
 
@@ -74,7 +85,10 @@ The diverse nature of this dataset allows our model to recognize a wide range of
 
 Our emotion classification model utilizes a Convolutional Neural Network (CNN) architecture, designed to efficiently extract and learn hierarchical features from facial images.
 
-![CNN Architecture](path/to/cnn_architecture_image.png)
+<div style="text-align: center;">
+<img width="546" alt="Screenshot 2024-08-04 at 7 19 18 AM" src="https://github.com/user-attachments/assets/6f9c88a1-b3c5-4ec1-b7a6-dccd71d248cd">
+    <p style="font-size: 14px; color: #555;">Figure: CNN architecture</p>
+</div>
 
 Key components of our CNN architecture:
 
@@ -217,15 +231,15 @@ Training and validation performance:
 
 <div style="text-align: center;">
   <img width="517" alt="Screenshot 2024-08-04 at 5 08 09 AM" src="https://github.com/user-attachments/assets/72a28af2-6a48-4ca4-9a1a-445a44c0aef8">
-    <p style="font-size: 14px; color: #555;">Figure 10.7: Training and Validation Loss and Accuracy</p>
+    <p style="font-size: 14px; color: #555;">Figure: Training and Validation Loss and Accuracy</p>
 </div>
 
 The model achieved an accuracy of 66% on the test set. Here's the confusion matrix illustrating its performance across different emotion categories:
 
-<img width="459" alt="Screenshot 2024-08-04 at 5 09 12 AM" src="https://github.com/user-attachments/assets/06001e82-e34c-4dfb-a0b4-37648f5ba4e5">
-
-
-![Confusion Matrix](path/to/confusion_matrix.png)
+<div style="text-align: center;">
+    <img width="476" alt="Screenshot 2024-08-04 at 7 15 11 AM" src="https://github.com/user-attachments/assets/b486a306-d742-48cd-8b25-a60a0c4b81b8">
+    <p style="font-size: 14px; color: #555;">Figure: Confusion Matrix</p>
+</div>
 
 ## Spotify API Integration
 
@@ -258,10 +272,8 @@ WMusic features a modern, intuitive, and responsive web interface designed for s
 
 ### Home Page
 
-![WMusic Homepage](path/to/photo_20240804_020105.jpg)
-
 <div align="center">
-    <img width="509" alt="WMusic Homepage" src="path/to/photo_20240804_020105.jpg">
+    <img width="519" alt="Screenshot 2024-08-04 at 7 07 16 AM" src="https://github.com/user-attachments/assets/02ecf8f5-34cf-47fe-b24b-2c320884a7d2">
     <p><strong>WMusic Homepage</strong></p>
 </div>
 
@@ -287,10 +299,8 @@ The home page of WMusic presents a clean and visually appealing layout:
 
 ### Recommendation Page
 
-![WMusic Recommendation Page](path/to/photo_20240804_020111.jpg)
-
 <div align="center">
-    <img width="509" alt="WMusic Recommendation Page" src="path/to/photo_20240804_020111.jpg">
+    ![photo_2024-08-04_02-01-11](https://github.com/user-attachments/assets/001a4ac3-4954-44d3-a569-339b4f33ae60)
     <p><strong>WMusic Recommendation Page</strong></p>
 </div>
 
@@ -332,6 +342,58 @@ Performance metrics:
 | Recall    | 66%   |
 | F1-Score  | 67%   |
 
+
+## Project Structure
+
+```
+.
+├── Dataset/
+│   ├── test/
+│   └── train/
+├── env/
+├── model/
+│   ├── haarcascade_frontalface_default.xml
+│   └── Model.h5
+├── music/
+│   ├── __pycache__/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── views.py
+│   └── wsgi.py
+├── static/
+│   ├── css/
+│   ├── fonts/
+│   ├── images/
+│   └── js/
+├── templates/
+│   ├── about.html
+│   ├── blog.html
+│   ├── footer.html
+│   ├── header.html
+│   ├── index.html
+│   ├── profile.html
+│   └── spotify.html
+├── .cache
+├── db.sqlite3
+├── Emotion.py
+├── manage.py
+├── README.md
+├── requirements.txt
+└── response.py
+```
+
+## Usage
+
+1. Launch the application by running the Django development server.
+2. Navigate to the home page in your web browser.
+3. Grant permission for the application to access your webcam.
+4. The system will analyze your facial expression in real-time.
+5. Based on the detected emotion, the application will recommend a playlist of songs from Spotify.
+6. You can play the recommended songs directly through the application interface.
+
+
 ## Challenges and Solutions
 
 1. **Real-time Processing**
@@ -370,9 +432,6 @@ We welcome contributions to enhance WMusic. To contribute:
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
 
