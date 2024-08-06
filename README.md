@@ -1,5 +1,16 @@
 # WMusic: Emotion-Based Music Recommendation System Using Spotify API
 
+## 🤝 Contributors
+
+This project was developed collaboratively by:
+
+- **[crishN144](https://github.com/crishN144)**: Major contributions in data analysis, system integration, and overall project development.
+- **[Yuvraj-021](https://github.com/Yuvraj-021)**: Key contributions in integrating the Spotify API and project coordination.
+- **[DhaneshVasaikar](https://github.com/DhaneshVasaikar)**: Contributions in system architecture, testing, and documentation.
+
+Thank you for your invaluable contributions! 🙌
+
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
